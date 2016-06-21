@@ -1,0 +1,11 @@
+{
+  "name": "leniwiec",
+  "private": true,
+  "dependencies": {
+    "body-parser": "1.15.1",
+    "compression": "1.6.2",
+    "dotenv": "2.0.0",
+    "express": "4.13.4",
+    "socket.io": "1.4.6"
+  }
+}

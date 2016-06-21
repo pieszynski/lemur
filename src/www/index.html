@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<title>Leniwiec</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"> -->
+</head>
+<body ng-app="indexModule" ng-controller="indexCtrl as main">
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3">
+            
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item">Tasks list</li>
+                    <li class="list-group-item active">
+                        <span class="badge">323</span>
+                        <span >First</span>
+                    </li>
+                    <li class="list-group-item list-group-item-success">
+                        <span class="badge">6</span>
+                        <span >Successful</span>
+                    </li>
+                    <li class="list-group-item"
+                        ng-repeat="elem in main.configurationNamesModel"
+                        ng-click="main.openTask(elem.name)">
+                        <span class="badge">14</span>
+                        <span ng-bind="elem.name"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>            
+                <button ng-show="main.openTaskModel"
+                        ng-click="main.runTask(main.openTaskModel.name)"
+                        class="btn btn-primary">Run task</button>
+       
+                <div>
+                    <ul class="list-group">
+                        <li class="list-group-item">Active workers list</li>
+                        <li class="list-group-item"
+                            ng-repeat="elem in main.workersModel"
+                            >
+                                <span>Worker #{{elem.pos}}:</span>
+                                <span ng-bind="elem.name"></span>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+	<p>Logs:</p>
+	<pre ng-bind="main.socketModel"></pre>
+
+    
+</div>
+
+	<script type="text/javascript" src="socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+	<script type="text/javascript" src="js/vendor/angular-touch.min.js"></script>
+	<script type="text/javascript" src="js/vendor/angular-sanitize.min.js"></script>
+	<script type="text/javascript">
+		var socket = io();
+	</script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
